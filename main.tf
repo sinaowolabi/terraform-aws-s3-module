@@ -31,6 +31,12 @@ resource "aws_resourcegroups_group" "resourcegroups_group" {
   }
 }
 
+resource "aws_kms_key" "kms_key" {
+  tags = {
+    ResourceGroup = local.namespace
+  }
+}
+
 resource "aws_s3_bucket" "s3_bucket" {
   bucket = "${local.namespace}-state-bucket"
   force_destroy = var.force_destroy_state
